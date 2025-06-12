@@ -1,0 +1,104 @@
+<div class="container mx-auto p-4">
+  <div class="flex flex-wrap gap-4 items-end">
+    <div class="w-64">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Filter by Article Category
+      </label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select
+          placeholder="Select article category"
+          [(value)]="selectedArticleCategory"
+          (selectionChange)="filterArticles()"
+        >
+          <mat-option value="">All</mat-option>
+          <mat-option
+            *ngFor="let category of articleCategories"
+            [value]="category"
+          >
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="w-64">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Filter by Material
+      </label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select
+          placeholder="Select material"
+          [(value)]="selectedMaterial"
+          (selectionChange)="filterArticles()"
+        >
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let material of materials" [value]="material">
+            {{ material }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="w-64">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Filter by Bicycle Category
+      </label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select
+          placeholder="Select categories"
+          [value]="selectedBicycleCategories"
+          (selectionChange)="updateBicycleCategoryFilter($event)"
+          multiple
+        >
+          <mat-option
+            *ngFor="let bicycleCategory of bicycleCategories"
+            [value]="bicycleCategory"
+          >
+            {{ bicycleCategory }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="w-64">
+      <label class="block mb-2 text-sm font-medium text-gray-900">
+        Sort the list
+      </label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select
+          placeholder="Select sorting"
+          [(value)]="selectedSortOption"
+          (selectionChange)="filterArticles()"
+        >
+          <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto p-4">
+  <app-table
+    [headers]="[
+      'Article Number',
+      'Name',
+      'Article Category',
+      'Bicycle Category',
+      'Material',
+      'Net Weight (g)',
+      'Action'
+    ]"
+    [keys]="[
+      'articleNumber',
+      'name',
+      'articleCategory',
+      'bicycleCategory',
+      'material',
+      'netWeight',
+    ]"
+    [action]="{ label: 'Edit', link: '/articles/edit' }"
+    [data]="filteredArticles"
+  />
+</div>

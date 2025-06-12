@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="mb-8">
+  <span class="text-lg font-semibold mr-8">Articles</span>
+
+  <span class="flex-1"></span>
+
+  <button mat-button [routerLink]="['/articles']" routerLinkActive="mat-accent">
+    Article List
+  </button>
+  <button
+    mat-button
+    [routerLink]="['/articles/create']"
+    routerLinkActive="mat-accent"
+  >
+    Add New Article
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

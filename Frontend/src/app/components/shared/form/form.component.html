@@ -1,0 +1,137 @@
+<form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="p-6">
+  <div class="grid gap-6 md:grid-cols-2">
+    <ng-container *ngIf="isEditMode; else inputArticleNumber">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Article Number</mat-label>
+        <input matInput [value]="articleNumber" readonly />
+      </mat-form-field>
+    </ng-container>
+    <ng-template #inputArticleNumber>
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Article Number</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="articleNumber"
+          placeholder="Article Number"
+        />
+        <mat-error
+          *ngIf="
+            articleForm.get('articleNumber')?.invalid &&
+            articleForm.get('articleNumber')?.touched
+          "
+        >
+          Article number is required.
+        </mat-error>
+      </mat-form-field>
+    </ng-template>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Article Name</mat-label>
+      <input matInput formControlName="name" placeholder="Article Name" />
+      <mat-error
+        *ngIf="
+          articleForm.get('name')?.invalid && articleForm.get('name')?.touched
+        "
+      >
+        Article name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Article Category</mat-label>
+      <input matInput formControlName="articleCategory" />
+      <mat-error
+        *ngIf="
+          articleForm.get('articleCategory')?.invalid &&
+          articleForm.get('articleCategory')?.touched
+        "
+      >
+        Article category is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Bicycle Category</mat-label>
+      <input matInput formControlName="bicycleCategory" />
+      <mat-error
+        *ngIf="
+          articleForm.get('bicycleCategory')?.invalid &&
+          articleForm.get('bicycleCategory')?.touched
+        "
+      >
+        Bicycle category is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Material</mat-label>
+      <input matInput formControlName="material" />
+      <mat-error
+        *ngIf="
+          articleForm.get('material')?.invalid &&
+          articleForm.get('material')?.touched
+        "
+      >
+        Material is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Length in mm</mat-label>
+      <input matInput type="number" formControlName="length" />
+      <mat-error
+        *ngIf="
+          articleForm.get('length')?.invalid &&
+          articleForm.get('length')?.touched
+        "
+      >
+        Length is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Width in mm</mat-label>
+      <input matInput type="number" formControlName="width" />
+      <mat-error
+        *ngIf="
+          articleForm.get('width')?.invalid && articleForm.get('width')?.touched
+        "
+      >
+        Width is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Height in mm</mat-label>
+      <input matInput type="number" formControlName="height" />
+      <mat-error
+        *ngIf="
+          articleForm.get('height')?.invalid &&
+          articleForm.get('height')?.touched
+        "
+      >
+        Height is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Weight in grams</mat-label>
+      <input matInput type="number" formControlName="netWeight" />
+      <mat-error
+        *ngIf="
+          articleForm.get('netWeight')?.invalid &&
+          articleForm.get('netWeight')?.touched
+        "
+      >
+        Net weight is required.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="md:col-span-2 text-right">
+      <button mat-raised-button color="primary" type="submit">
+        {{ isEditMode ? "Update" : "Add" }}
+      </button>
+    </div>
+  </div>
+</form>

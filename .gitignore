@@ -1,0 +1,6 @@
+# Backend
+Backend/bin/
+Backend/obj/
+
+# System
+.DS_Store
